@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import {
   FaGithub,
@@ -13,11 +14,16 @@ import {
 } from "react-icons/fa";
 import { GiEightBall, GiShuttlecock } from "react-icons/gi";
 import { motion } from "framer-motion";
+
+
 // Member PFPs
 import cirengPfp from "./assets/cirengavatar.png";
 import gnzyPfp from "./assets/ayame.jpeg";
 import ahiruPfp from "./assets/sareas.jpeg";
 import susien from "./assets/susien.jpg";
+
+// Member Portfolios
+import GnzyPage from "./gnzyyyyyyy/App";
 
 // Import Game Logos here!
 import hsrLogo from "./assets/games/hsr.png";
@@ -55,6 +61,7 @@ const MemberCard = ({
   socials,
   games,
   isReversed,
+  profilePath,
 }) => (
   <motion.div
     variants={fadeInUp}
@@ -71,14 +78,22 @@ const MemberCard = ({
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <div className="w-48 h-48 md:w-64 md:h-64 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-500 overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
-        <img
-          src={pfp}
-          alt={name}
-          className="w-full h-full object-cover antialiased"
-          style={{ imageRendering: "auto" }}
-        />
-      </div>
+      {profilePath ? (
+        <Link to={profilePath} className="cursor-pointer block">
+          <div className="w-48 h-48 md:w-64 md:h-64 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-500 overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
+            <img
+              src={pfp}
+              alt={name}
+              className="w-full h-full object-cover antialiased"
+              style={{ imageRendering: "auto" }}
+            />
+          </div>
+        </Link>
+      ) : (
+        <div className="w-48 h-48 md:w-64 md:h-64 rounded-[3rem] rotate-2 group-hover:rotate-0 transition-transform duration-500 overflow-hidden border-8 border-white dark:border-gray-800 shadow-2xl">
+          <img src={pfp} alt={name} className="w-full h-full object-cover" />
+        </div>
+      )}
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -252,6 +267,7 @@ const ElysiaLandingPage = () => {
     {
       name: "SilverWolf",
       role: "Founder, Backend-dev, Troller",
+      profilePath: "/SilverWolf",
       tech: [
         "ElysiaJS",
         "Bun",
@@ -296,6 +312,7 @@ const ElysiaLandingPage = () => {
     {
       name: "Gnzyyyyyyy",
       role: "Fullstack-dev, Dongo, Concrete-maker",
+      profilePath: "/Gnzyyyyyyy",
       tech: [
         "Java",
         "Springboot",
@@ -344,6 +361,7 @@ const ElysiaLandingPage = () => {
     {
       name: "AhiruSareas",
       role: "Head-Chef, Main-builder, Sentinel, Idea Generator",
+      profilePath: "/AhiruSareas",
       tech: ["Knife Skills", "Chef-jacket"],
       pfp: ahiruPfp,
       hobbies: [
@@ -374,6 +392,7 @@ const ElysiaLandingPage = () => {
     {
       name: "Cryscwl",
       role: "Tax-Collector, Waifu Enjoyer",
+      profilePath: "/Cryscwl",
       tech: ["Calculator", "Spreadsheets"],
       pfp: susien,
       hobbies: [
