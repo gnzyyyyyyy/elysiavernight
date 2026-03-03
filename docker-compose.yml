@@ -17,8 +17,8 @@ services:
       # Nginx in the Dockerfile serves on port 80
       - "traefik.http.services.elysia-landing.loadbalancer.server.port=80"
     networks:
-      - elysia-weather_default
+      - elysia-network
 
 networks:
-  elysia-weather_default:
+  elysia-network:
     external: true
